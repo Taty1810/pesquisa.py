@@ -1,56 +1,47 @@
 # Programa: Pesquisa de Satisfação - TudoWeb
-# Configurado para 10 entrevistados para testes (conforme requisito da atividade)
+# Lista contendo 10 entrevistas pré-preenchidas para demonstração e testes
 
-total_entrevistados = 10
+# Cada item da lista representa um entrevistado: [Nome, Idade, Opinião (1-Excelente, 2-Bom, 3-Ruim)]
+entrevistas = [
+    ["Ana Silva", 28, 1],
+    ["Carlos Souza", 34, 2],
+    ["Mariana Costa", 22, 1],
+    ["João Pedro", 45, 3],
+    ["Beatriz Lima", 30, 1],
+    ["Lucas Mendes", 26, 2],
+    ["Fernanda Rocha", 40, 3],
+    ["Gabriel Alves", 29, 1],
+    ["Juliana Ribeiro", 38, 2],
+    ["Rafael Santos", 31, 1]
+]
 
+total_entrevistados = len(entrevistas)
 qtd_excelente = 0
 qtd_ruim = 0
 
 print("=== PESQUISA DE SATISFAÇÃO - TUDOWEB ===")
-print(f"Iniciando a pesquisa com {total_entrevistados} entrevistados.\n")
+print(f"Processando dados de {total_entrevistados} entrevistados...\n")
 
-for i in range(1, total_entrevistados + 1):
-    print(f"--- Entrevistado {i} de {total_entrevistados} ---")
+# Estrutura de repetição FOR iterando sobre cada entrevista já cadastrada
+for i, dados in enumerate(entrevistas, start=1):
+    nome = dados[0]
+    idade = dados[1]
+    opiniao = dados[2]
     
-    # Coleta de dados básicos
-    nome = input("Digite o nome do entrevistado: ")
-    
-    # Validação simples da idade
-    while True:
-        try:
-            idade = int(input("Digite a idade do entrevistado: "))
-            if idade > 0:
-                break
-            print("Por favor, digite uma idade válida maior que zero.")
-        except ValueError:
-            print("Entrada inválida. Digite um número inteiro para a idade.")
-            
-    # Coleta e validação da opinião
-    print("Opinião sobre o atendimento:")
-    print("  [1] EXCELENTE")
-    print("  [2] BOM")
-    print("  [3] RUIM")
-    
-    while True:
-        try:
-            opiniao = int(input("Digite o código da sua opinião (1, 2 ou 3): "))
-            if opiniao in [1, 2, 3]:
-                break
-            print("Opinião inválida! Escolha 1, 2 ou 3.")
-        except ValueError:
-            print("Entrada inválida. Digite apenas o número correspondente.")
-
-    # Estrutura de decisão para contabilizar as respostas
+    # Traduzindo o código da opinião para texto para exibição
     if opiniao == 1:
+        texto_opiniao = "EXCELENTE"
         qtd_excelente += 1
-    elif opiniao == 3:
+    elif opiniao == 2:
+        texto_opiniao = "BOM"
+    else:
+        texto_opiniao = "RUIM"
         qtd_ruim += 1
-    # Nota: A opção 2 (BOM) é registrada no fluxo, mas não possui contagem específica exigida no relatório final.
 
-    print("-" * 35 + "\n")
+    print(f"Entrevistado {i}: {nome} | Idade: {idade} | Opinião: {texto_opiniao}")
 
 # Exibição dos resultados finais
-print("=" * 40)
+print("\n" + "=" * 40)
 print("       RESULTADO FINAL DA PESQUISA       ")
 print("=" * 40)
 print(f"Total de entrevistados: {total_entrevistados}")
